@@ -41,12 +41,12 @@ def apply_regex_to_file(input_filepath, output_filepath):
 def apply_regex_to_line(line):
     ''' Apply regex to line. '''
     # edit width tags
-    line = re.sub(REGEX_STROKE, r'\1', line) 
+    line = re.sub(REGEX_STROKE, r'\1', line)
     # remove TSTAMP tags - cosmetic only
    line = re.sub(REGEX_TSTAMP, '', line)
     # put in spoof version so that it is updated with the current version of kicad
     line = re.sub(REGEX_VERSION, '(version 20100101)', line)
-    return line 
+    return line
 
 
 def check_file_exists(filepath):
@@ -75,10 +75,6 @@ def create_output_filepath(input_filepath):
   input_filename = os.path.basename(input_filepath)
   logging.debug('input_filename {}'.format(input_filename))
   input_directory = os.path.dirname(input_filepath)
-  # append '_edited' to end of filename, prior to suffix
-  # split_input_filename = input_filename.split('.')
-  # split_input_filename[-2] = split_input_filename[-2] + '_edited'
-  # output_filename = '.'.join(split_input_filename) 
   output_directory = create_output_directory(input_directory)
   output_filepath = os.path.join(output_directory, input_filename)
   logging.debug('output_filepath {}'.format(output_filepath))
@@ -110,7 +106,7 @@ def main(*args, **kwargs):
     exit_code('Filepath not found: {}'.format(input_filepath))
   output_filepath = create_output_filepath(input_filepath)
   apply_regex_to_file(input_filepath, output_filepath)
-  
+
 
   logging.debug('done')
 
